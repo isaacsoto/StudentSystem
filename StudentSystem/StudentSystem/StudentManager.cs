@@ -69,6 +69,12 @@ namespace StudentSystem
             return gender;
         }
 
+        public bool DeleteStudent(Student Student) 
+        {
+            return Students.Remove(Student) &&
+                StudentsByType[Student.GetStudentType()].Remove(Student);
+        }
+
         public string GetListOfStudents()
         {
             string listOfStudents = "";
