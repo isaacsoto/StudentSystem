@@ -10,6 +10,17 @@ namespace StudentSystem
     {
         private char[] LineFormatSeparators = { ',' };
         private string DateFomat = "yyyyMMddHHmmss";
+        private SortedSet<Student> students;
+
+        public StudentManager()
+        {
+            students = new SortedSet<Student>();
+        }
+
+        public bool AddStudent(Student student)
+        {
+            return students.Add(student);
+        }
         public Student CreateStudentFromLine(string Line)
         {
             string[] parameters = Line.Split(LineFormatSeparators);
@@ -44,6 +55,19 @@ namespace StudentSystem
                 gender = "Female";
             }
             return gender;
+        }
+
+        public string GetListOfStudents()
+        {
+            string listOfStudents = "";
+            foreach (Student student in this.students) {
+                listOfStudents = String.Join(
+                    Environment.NewLine,
+                    listOfStudents,
+                    "",
+                    student.ToString());
+            }
+            return listOfStudents;
         }
     }
 }

@@ -41,10 +41,19 @@ namespace StudentSystem
             if (Obj is Student) {
                 Student otherStudent = Obj as Student;
                 result = this.Name.CompareTo(otherStudent.Name);
+                if (result == 0) {
+                    result = this.Type.CompareTo(otherStudent.Type);
+                    if (result == 0) {
+                        result = this.Gender.CompareTo(otherStudent.Gender);
+                        if (result == 0) {
+                            result = this.TimeStamp.CompareTo(otherStudent.TimeStamp);
+                        }
+                    }
+                }
             } else {
                 throw new ArgumentException("Object is not a Student");
             }
-            return 0;
+            return result;
         }
     }
 }

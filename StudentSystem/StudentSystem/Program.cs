@@ -10,9 +10,10 @@ namespace StudentSystem
             StudentManager studentManager = new StudentManager();
             while ((line = Console.ReadLine()) != null)
             {
-                string result = studentManager.CreateStudentFromLine(line).ToString();
-                Console.WriteLine(result);
+                Student newStudent = studentManager.CreateStudentFromLine(line);
+                studentManager.AddStudent(newStudent);
             }
+            Console.WriteLine(studentManager.GetListOfStudents());
         }
     }
 }
