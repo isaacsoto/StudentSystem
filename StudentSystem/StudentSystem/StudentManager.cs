@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace StudentSystem
 {
-    class StudentManager
+    public class StudentManager
     {
         private char[] LineFormatSeparators = { ',' };
         private string DateFomat = "yyyyMMddHHmmss";
@@ -17,7 +17,7 @@ namespace StudentSystem
             InitializeCollectionsValues();
         }
 
-        public void InitializeCollectionsValues() 
+        private void InitializeCollectionsValues() 
         {
             SortedSet<Student> newSet;
             foreach (StudentType type in Enum.GetValues(typeof(StudentType))) {
