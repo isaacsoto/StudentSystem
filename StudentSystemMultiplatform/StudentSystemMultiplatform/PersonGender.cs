@@ -2,7 +2,7 @@
 
 namespace StudentSystem
 {
-    enum PersonGender
+    public enum PersonGender
     {
         Male,
         Female,

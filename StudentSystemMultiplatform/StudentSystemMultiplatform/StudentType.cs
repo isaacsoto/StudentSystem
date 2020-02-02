@@ -2,7 +2,7 @@
 
 namespace StudentSystem
 {
-    enum StudentType
+    public enum StudentType
     {
         Kinder,
         Elementary,
