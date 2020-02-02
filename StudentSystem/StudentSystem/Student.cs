@@ -15,7 +15,7 @@ namespace StudentSystem
         }
     }
 
-    class Student : IComparable
+    public class Student : IComparable
     {
         private StudentType Type;
         private String Name;
@@ -79,6 +79,11 @@ namespace StudentSystem
         public DateTime GetTimeStamp()
         {
             return TimeStamp;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return (CompareTo(obj) == 0);
         }
     }
 }

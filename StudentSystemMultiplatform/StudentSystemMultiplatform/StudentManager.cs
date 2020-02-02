@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace StudentSystem
 {
-    class StudentManager
+    public class StudentManager
     {
         private char[] LineFormatSeparators = { ',' };
         private string DateFomat = "yyyyMMddHHmmss";
