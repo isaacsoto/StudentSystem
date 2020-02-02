@@ -13,7 +13,7 @@ namespace StudentSystem
                 Student newStudent = studentManager.CreateStudentFromLine(line);
                 studentManager.AddStudent(newStudent);
             }
-            Console.WriteLine(studentManager.GetListOfStudents(StudentType.High, PersonGender.Male));
+            Console.WriteLine(studentManager.GetListOfStudents("Luke"));
         }
     }
 }

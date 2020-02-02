@@ -11,6 +11,9 @@ namespace StudentSystem
         public int Compare(Student x, Student y)
         {
             int result = (-1)*(x.GetTimeStamp().CompareTo(y.GetTimeStamp()));
+            if (result == 0) {
+                result = x.CompareTo(y);
+            }
             return result;
         }
     }
@@ -54,9 +57,6 @@ namespace StudentSystem
                     result = this.Type.CompareTo(otherStudent.Type);
                     if (result == 0) {
                         result = this.Gender.CompareTo(otherStudent.Gender);
-                        if (result == 0) {
-                            result = this.TimeStamp.CompareTo(otherStudent.TimeStamp);
-                        }
                     }
                 }
             } else {
@@ -70,14 +70,18 @@ namespace StudentSystem
             return Type;
         }
 
-        public DateTime GetTimeStamp()
+        public string GetName()
         {
-            return TimeStamp;
+            return Name;
         }
-
         public PersonGender GetGender()
         {
             return Gender;
+        }
+
+        public DateTime GetTimeStamp()
+        {
+            return TimeStamp;
         }
     }
 }

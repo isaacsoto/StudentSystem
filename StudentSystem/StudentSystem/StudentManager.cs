@@ -79,6 +79,10 @@ namespace StudentSystem
                     "",
                     student.ToString());
             }
+            if (listOfStudents.Length == 0)
+            {
+                listOfStudents = "No student data";
+            }
             return listOfStudents;
         }
 
@@ -92,6 +96,10 @@ namespace StudentSystem
                     listOfStudents,
                     "",
                     student.ToString());
+            }
+            if (listOfStudents.Length == 0)
+            {
+                listOfStudents = "No results found";
             }
             return listOfStudents;
         }
@@ -108,6 +116,32 @@ namespace StudentSystem
                     "",
                     student.ToString());
                 }
+            }
+            if (listOfStudents.Length == 0) {
+                listOfStudents = "No results found";
+            }
+            return listOfStudents;
+        }
+
+        public string GetListOfStudents(String Name)
+        {
+            string listOfStudents = "";
+            string nameToSeek = Name.ToLower();
+            foreach (Student student in this.Students)
+            {
+                string studentName = student.GetName().ToLower();
+                if (studentName.Contains(nameToSeek))
+                {
+                    listOfStudents = String.Join(
+                    Environment.NewLine,
+                    listOfStudents,
+                    "",
+                    student.ToString());
+                }
+            }
+            if (listOfStudents.Length == 0)
+            {
+                listOfStudents = "No results found";
             }
             return listOfStudents;
         }
