@@ -72,6 +72,12 @@ namespace StudentSystem
                 StudentsByType[Student.GetStudentType()].Remove(Student);
         }
 
+        public bool ContainsStudent(Student Student)
+        {
+            return Students.Contains(Student) &&
+                StudentsByType[Student.GetStudentType()].Contains(Student);
+        }
+
         public string GetListOfStudents()
         {
             string listOfStudents = "";
