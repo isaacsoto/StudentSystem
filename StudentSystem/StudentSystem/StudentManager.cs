@@ -20,7 +20,8 @@ namespace StudentSystem
         {
             StudentType type = (StudentType) Enum.Parse(typeof(StudentType), parameters[0]);
             string name = parameters[1];
-            PersonGender studentGender = (PersonGender) Enum.Parse(typeof(PersonGender), parameters[2]);
+            PersonGender studentGender = (PersonGender) Enum.Parse(typeof(PersonGender), 
+                processStudentGender(parameters[2]));
             DateTime timeStamp = DateTime.ParseExact(parameters[3], DateFomat,
                                 System.Globalization.CultureInfo.InvariantCulture);
             return CreateStudent(type, name, studentGender, timeStamp);
@@ -30,6 +31,19 @@ namespace StudentSystem
         {
             Student newStudent = new Student(Type, Name, StudentGender, TimeStamp);
             return newStudent;
+        }
+
+        private string processStudentGender(string ParameterGender) 
+        {
+            String gender = "other";
+            if (ParameterGender.Equals("M", StringComparison.InvariantCultureIgnoreCase))
+            {
+                gender = "Male";
+            }
+            else if (ParameterGender.Equals("F", StringComparison.InvariantCultureIgnoreCase)) {
+                gender = "Female";
+            }
+            return gender;
         }
     }
 }

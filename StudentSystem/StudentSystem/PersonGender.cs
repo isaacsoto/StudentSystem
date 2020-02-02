@@ -9,6 +9,7 @@ namespace StudentSystem
     enum PersonGender
     {
         Male,
-        Female
+        Female,
+        other
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace StudentSystem
 {
-    class Student
+    class Student : IComparable
     {
         private StudentType Type;
         private String Name;
@@ -30,6 +30,21 @@ namespace StudentSystem
                     "Gender: " + this.Gender.ToString("G"),
                     "Last Modification: " + this.TimeStamp.ToString());
             return result;
+        }
+
+        public int CompareTo(Object Obj) 
+        {
+            int result;
+            if (Obj == null) {
+                throw new ArgumentException("Object is not a Valid");
+            }
+            if (Obj is Student) {
+                Student otherStudent = Obj as Student;
+                result = this.Name.CompareTo(otherStudent.Name);
+            } else {
+                throw new ArgumentException("Object is not a Student");
+            }
+            return 0;
         }
     }
 }
