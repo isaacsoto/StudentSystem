@@ -6,6 +6,15 @@ using System.Threading.Tasks;
 
 namespace StudentSystem
 {
+    class TimeStampComparer : IComparer<Student>
+    {
+        public int Compare(Student x, Student y)
+        {
+            int result = (-1)*(x.GetTimeStamp().CompareTo(y.GetTimeStamp()));
+            return result;
+        }
+    }
+
     class Student : IComparable
     {
         private StudentType Type;
@@ -54,6 +63,21 @@ namespace StudentSystem
                 throw new ArgumentException("Object is not a Student");
             }
             return result;
+        }
+
+        public StudentType GetStudentType() 
+        {
+            return Type;
+        }
+
+        public DateTime GetTimeStamp()
+        {
+            return TimeStamp;
+        }
+
+        public PersonGender GetGender()
+        {
+            return Gender;
         }
     }
 }

@@ -10,16 +10,28 @@ namespace StudentSystem
     {
         private char[] LineFormatSeparators = { ',' };
         private string DateFomat = "yyyyMMddHHmmss";
-        private SortedSet<Student> students;
+        private SortedSet<Student> Students;
+        private SortedDictionary<StudentType, SortedSet<Student>> StudentsByType;
 
         public StudentManager()
         {
-            students = new SortedSet<Student>();
+            Students = new SortedSet<Student>();
+            StudentsByType = new SortedDictionary<StudentType, SortedSet<Student>>();
+            InitializeCollectionsValues();
+        }
+
+        public void InitializeCollectionsValues() 
+        {
+            SortedSet<Student> newSet;
+            foreach (StudentType type in Enum.GetValues(typeof(StudentType))) {
+                newSet = new SortedSet<Student>(new TimeStampComparer());
+                StudentsByType.Add(type, newSet);
+            }
         }
 
         public bool AddStudent(Student student)
         {
-            return students.Add(student);
+            return Students.Add(student) && StudentsByType[student.GetStudentType()].Add(student);
         }
         public Student CreateStudentFromLine(string Line)
         {
@@ -60,12 +72,42 @@ namespace StudentSystem
         public string GetListOfStudents()
         {
             string listOfStudents = "";
-            foreach (Student student in this.students) {
+            foreach (Student student in this.Students) {
                 listOfStudents = String.Join(
                     Environment.NewLine,
                     listOfStudents,
                     "",
                     student.ToString());
+            }
+            return listOfStudents;
+        }
+
+        public string GetListOfStudents(StudentType Type)
+        {
+            string listOfStudents = "";
+            foreach (Student student in this.StudentsByType[Type])
+            {
+                listOfStudents = String.Join(
+                    Environment.NewLine,
+                    listOfStudents,
+                    "",
+                    student.ToString());
+            }
+            return listOfStudents;
+        }
+
+        public string GetListOfStudents(StudentType Type, PersonGender Gender)
+        {
+            string listOfStudents = "";
+            foreach (Student student in this.StudentsByType[Type])
+            {
+                if (student.GetGender() == Gender) {
+                    listOfStudents = String.Join(
+                    Environment.NewLine,
+                    listOfStudents,
+                    "",
+                    student.ToString());
+                }
             }
             return listOfStudents;
         }
